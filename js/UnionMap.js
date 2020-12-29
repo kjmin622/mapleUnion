@@ -161,6 +161,7 @@ $(document).ready(function(){
         mouseStatus = 0;
     });
     $('.unionBlock').mouseover(function(){
+        isClick=0;
         if(mouseStatus!=0){
             var id = $(this).attr('id').split('_');
             var r = id[0];
@@ -175,7 +176,42 @@ $(document).ready(function(){
             }
         }
     });
-    $('.unionBlock').dblclick(function(){
+    $('.unionBlock').mousedown(function(){
+        isClick = 1;
+        var id = $(this).attr('id').split('_');
+        timer = setTimeout(function(){
+            if(isClick != 0){
+                isClick = 0;
+                var r = id[0];
+                var c = id[1];
+                var status = !maps[r][c];
+                var section = sectionArr[r][c];
+                for(var i=0; i<20; i++){
+                    for(var j=0; j<22; j++){
+                        if(section==sectionArr[i][j]){
+                            if(!status){
+                                maps[i][j]=true;
+                                $("#"+i+"_"+j).css('background-color','rgb(150,150,150)');
+                            }
+                            else{
+                                maps[i][j]=false;
+                                $("#"+i+"_"+j).css('background-color','rgb(235,235,235)');
+                            }
+                        }
+                    }
+                }  
+            }
+        },500);
+    }).on({
+        mouseup:function(){
+            isClick = 0;
+        },
+        mouseleave:function(){
+            isClick = 0;
+        }
+    });
+
+    $('.unionBlock').dblclick(function(e){
         var id = $(this).attr('id').split('_');
         var r = id[0];
         var c = id[1];
@@ -193,6 +229,15 @@ $(document).ready(function(){
                         $("#"+i+"_"+j).css('background-color','rgb(235,235,235)');
                     }
                 }
+            }
+        }  
+        
+    });
+    $('.resetbtn').click(function(){
+        for(var i=0; i<20; i++){
+            for(var j=0; j<22; j++){
+                maps[i][j]=false;
+                $("#"+i+"_"+j).css('background-color','rgb(235,235,235)');
             }
         }
     });
