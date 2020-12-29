@@ -288,4 +288,20 @@ $(document).ready(function(){
     $(".levelbtn").click(function(){
         setUnion(unionlank,$(this).attr('name').substring(5));
     });
+
+    $(".char>div>input").on("propertychange change keyup paste input",function(){
+        var inputvalue = $(this).val();
+        if(isNaN(inputvalue) || inputvalue<0){
+            alert("0 이상의 숫자를 입력해주세요!");
+            $(this).val('0');
+        }
+    });
+
+    $(".cplusbtn").click(function(){
+        $(this).parent().children('input[name=charcount]').val($(this).parent().children('input[name=charcount]').val()*1+1);
+    });
+    $(".cminusbtn").click(function(){
+        var valu = 1*$(this).parent().children('input[name=charcount]').val();
+        if(valu>0) $(this).parent().children('input[name=charcount]').val(valu-1);
+    });
 });

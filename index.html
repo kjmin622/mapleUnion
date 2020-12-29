@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="css/main.css"> 
     <link rel="stylesheet" type="text/css" href="css/map.css"> 
     <link rel="stylesheet" type="text/css" href="css/lank.css"> 
+    <link rel="stylesheet" type="text/css" href="css/char.css"> 
 </head>
 <body>
     <div class="fullFrame">
@@ -20,9 +21,6 @@
                         <p>길게 클릭: 영역선택</p>
                         <p>위 버튼 : 색칠 초기화</p>
                         <br>
-                        <p class="bold">유니온 캐릭터 추가</p>
-                        <p>아래 + 버튼을 눌러 추가하세요</p>
-                        <p>필수 유니온은 체크해주세요</p>
                     </div>
                 </div>
                 <div class="mapbox"><table id="map"></table></div>
@@ -57,7 +55,212 @@
             </div>
         </div>
         <div class="Frame BottomFrame">
-            <div class="haveUnion RunUnion"></div>
+            <div class="haveUnion">
+                <div class="runtitle">
+                    <p style="font-size: 20px;">유니온 캐릭터</p>
+                </div>
+                <div class="characterSlot">
+                    <div class="char" name="warrior">
+                        <p>전사</p>
+                        <div name="SSS">SSS 
+                            <input name="charcount" type="text" value="0">
+                            <div class="cplusbtn">↑</div>
+                            <div class="cminusbtn">↓</div>&nbsp;&nbsp;
+                            <input name="necessary" type="text" value="0">
+                        </div>
+                        <div name="SS">SS 
+                            <input name="charcount" type="text" value="0">
+                            <div class="cplusbtn">↑</div>
+                            <div class="cminusbtn">↓</div>&nbsp;&nbsp;
+                            <input name="necessary" type="text" value="0">
+                        </div>
+                        <div name="S">S 
+                            <input name="charcount" type="text" value="0">
+                            <div class="cplusbtn">↑</div>
+                            <div class="cminusbtn">↓</div>&nbsp;&nbsp;
+                            <input name="necessary" type="text" value="0">
+                        </div>
+                        <div name="A">A 
+                            <input name="charcount" type="text" value="0">
+                            <div class="cplusbtn">↑</div>
+                            <div class="cminusbtn">↓</div>&nbsp;&nbsp;
+                            <input name="necessary" type="text" value="0">
+                        </div>
+                        <div name="B">B 
+                            <input name="charcount" type="text" value="0">
+                            <div class="cplusbtn">↑</div>
+                            <div class="cminusbtn">↓</div>&nbsp;&nbsp;
+                            <input name="necessary" type="text" value="0">
+                        </div>
+                    </div>
+                    <div class="char" name="archer">
+                        <p>궁수/핸즈</p>
+                        <div name="SSS">SSS 
+                            <input name="charcount" type="text" value="0">
+                            <div class="cplusbtn">↑</div>
+                            <div class="cminusbtn">↓</div>&nbsp;&nbsp;
+                            <input name="necessary" type="text" value="0">
+                        </div>
+                        <div name="SS">SS 
+                            <input name="charcount" type="text" value="0">
+                            <div class="cplusbtn">↑</div>
+                            <div class="cminusbtn">↓</div>&nbsp;&nbsp;
+                            <input name="necessary" type="text" value="0">
+                        </div>
+                        <div name="S">S 
+                            <input name="charcount" type="text" value="0">
+                            <div class="cplusbtn">↑</div>
+                            <div class="cminusbtn">↓</div>&nbsp;&nbsp;
+                            <input name="necessary" type="text" value="0">
+                        </div>
+                        <div name="A">A 
+                            <input name="charcount" type="text" value="0">
+                            <div class="cplusbtn">↑</div>
+                            <div class="cminusbtn">↓</div>&nbsp;&nbsp;
+                            <input name="necessary" type="text" value="0">
+                        </div>
+                        <div name="B">B 
+                            <input name="charcount" type="text" value="0">
+                            <div class="cplusbtn">↑</div>
+                            <div class="cminusbtn">↓</div>&nbsp;&nbsp;
+                            <input name="necessary" type="text" value="0">
+                        </div>
+                    </div>
+                    <div class="char" name="wizard">
+                        <p>마법사</p>
+                        <div name="SSS">SSS 
+                            <input name="charcount" type="text" value="0">
+                            <div class="cplusbtn">↑</div>
+                            <div class="cminusbtn">↓</div>&nbsp;&nbsp;
+                            <input name="necessary" type="text" value="0">
+                        </div>
+                        <div name="SS">SS 
+                            <input name="charcount" type="text" value="0">
+                            <div class="cplusbtn">↑</div>
+                            <div class="cminusbtn">↓</div>&nbsp;&nbsp;
+                            <input name="necessary" type="text" value="0">
+                        </div>
+                        <div name="S">S 
+                            <input name="charcount" type="text" value="0">
+                            <div class="cplusbtn">↑</div>
+                            <div class="cminusbtn">↓</div>&nbsp;&nbsp;
+                            <input name="necessary" type="text" value="0">
+                        </div>
+                        <div name="A">A 
+                            <input name="charcount" type="text" value="0">
+                            <div class="cplusbtn">↑</div>
+                            <div class="cminusbtn">↓</div>&nbsp;&nbsp;
+                            <input name="necessary" type="text" value="0">
+                        </div>
+                        <div name="B">B 
+                            <input name="charcount" type="text" value="0">
+                            <div class="cplusbtn">↑</div>
+                            <div class="cminusbtn">↓</div>&nbsp;&nbsp;
+                            <input name="necessary" type="text" value="0">
+                        </div>
+                    </div>
+                    <div class="char" name="thief">
+                        <p>도적</p>
+                        <div name="SSS">SSS 
+                            <input name="charcount" type="text" value="0">
+                            <div class="cplusbtn">↑</div>
+                            <div class="cminusbtn">↓</div>&nbsp;&nbsp;
+                            <input name="necessary" type="text" value="0">
+                        </div>
+                        <div name="SS">SS 
+                            <input name="charcount" type="text" value="0">
+                            <div class="cplusbtn">↑</div>
+                            <div class="cminusbtn">↓</div>&nbsp;&nbsp;
+                            <input name="necessary" type="text" value="0">
+                        </div>
+                        <div name="S">S 
+                            <input name="charcount" type="text" value="0">
+                            <div class="cplusbtn">↑</div>
+                            <div class="cminusbtn">↓</div>&nbsp;&nbsp;
+                            <input name="necessary" type="text" value="0">
+                        </div>
+                        <div name="A">A 
+                            <input name="charcount" type="text" value="0">
+                            <div class="cplusbtn">↑</div>
+                            <div class="cminusbtn">↓</div>&nbsp;&nbsp;
+                            <input name="necessary" type="text" value="0">
+                        </div>
+                        <div name="B">B 
+                            <input name="charcount" type="text" value="0">
+                            <div class="cplusbtn">↑</div>
+                            <div class="cminusbtn">↓</div>&nbsp;&nbsp;
+                            <input name="necessary" type="text" value="0">
+                        </div>
+                    </div>
+                    <div class="char" name="pirate">
+                        <p>해적</p>
+                        <div name="SSS">SSS 
+                            <input name="charcount" type="text" value="0">
+                            <div class="cplusbtn">↑</div>
+                            <div class="cminusbtn">↓</div>&nbsp;&nbsp;
+                            <input name="necessary" type="text" value="0">
+                        </div>
+                        <div name="SS">SS 
+                            <input name="charcount" type="text" value="0">
+                            <div class="cplusbtn">↑</div>
+                            <div class="cminusbtn">↓</div>&nbsp;&nbsp;
+                            <input name="necessary" type="text" value="0">
+                        </div>
+                        <div name="S">S 
+                            <input name="charcount" type="text" value="0">
+                            <div class="cplusbtn">↑</div>
+                            <div class="cminusbtn">↓</div>&nbsp;&nbsp;
+                            <input name="necessary" type="text" value="0">
+                        </div>
+                        <div name="A">A 
+                            <input name="charcount" type="text" value="0">
+                            <div class="cplusbtn">↑</div>
+                            <div class="cminusbtn">↓</div>&nbsp;&nbsp;
+                            <input name="necessary" type="text" value="0">
+                        </div>
+                        <div name="B">B 
+                            <input name="charcount" type="text" value="0">
+                            <div class="cplusbtn">↑</div>
+                            <div class="cminusbtn">↓</div>&nbsp;&nbsp;
+                            <input name="necessary" type="text" value="0">
+                        </div>
+                    </div>
+                    <div class="char" name="xenon">
+                        <p>제논</p>
+                        <div name="SSS">SSS 
+                            <input name="charcount" type="text" value="0">
+                            <div class="cplusbtn">↑</div>
+                            <div class="cminusbtn">↓</div>&nbsp;&nbsp;
+                            <input name="necessary" type="text" value="0">
+                        </div>
+                        <div name="SS">SS 
+                            <input name="charcount" type="text" value="0">
+                            <div class="cplusbtn">↑</div>
+                            <div class="cminusbtn">↓</div>&nbsp;&nbsp;
+                            <input name="necessary" type="text" value="0">
+                        </div>
+                        <div name="S">S 
+                            <input name="charcount" type="text" value="0">
+                            <div class="cplusbtn">↑</div>
+                            <div class="cminusbtn">↓</div>&nbsp;&nbsp;
+                            <input name="necessary" type="text" value="0">
+                        </div>
+                        <div name="A">A 
+                            <input name="charcount" type="text" value="0">
+                            <div class="cplusbtn">↑</div>
+                            <div class="cminusbtn">↓</div>&nbsp;&nbsp;
+                            <input name="necessary" type="text" value="0">
+                        </div>
+                        <div name="B">B 
+                            <input name="charcount" type="text" value="0">
+                            <div class="cplusbtn">↑</div>
+                            <div class="cminusbtn">↓</div>&nbsp;&nbsp;
+                            <input name="necessary" type="text" value="0">
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
             <div class="outputEffect"></div>
         </div>
     </div>
