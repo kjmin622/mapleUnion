@@ -25,7 +25,7 @@ body{
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     display:flex;
     flex-flow:column;
-    background-color:rgb(230,230,230);
+    background-color:rgb(245,245,245);
 }
 .topFrame{
     border-bottom: 2px solid gray;

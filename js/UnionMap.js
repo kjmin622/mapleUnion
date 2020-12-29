@@ -156,7 +156,7 @@ $(document).ready(function(){
         }
         if(mouseStatus==2){
             maps[r][c]=false;
-            $(this).css('background-color','rgb(235,235,235)');
+            $(this).css('background-color','rgb(245,245,245)');
         }
     });
     $('*').mouseup(function(){
@@ -175,7 +175,7 @@ $(document).ready(function(){
             }
             if(mouseStatus==2){
                 maps[r][c]=false;
-                $(this).css('background-color','rgb(235,235,235)');
+                $(this).css('background-color','rgb(245,245,245)');
             }
         }
     });
@@ -199,7 +199,7 @@ $(document).ready(function(){
                             }
                             else{
                                 maps[i][j]=false;
-                                $("#"+i+"_"+j).css('background-color','rgb(235,235,235)');
+                                $("#"+i+"_"+j).css('background-color','rgb(245,245,245)');
                             }
                         }
                     }
@@ -220,7 +220,7 @@ $(document).ready(function(){
             for(var j=0; j<22; j++){
                 if(maps[i][j]==null) continue;
                 maps[i][j]=false;
-                $("#"+i+"_"+j).css('background-color','rgb(235,235,235)');
+                $("#"+i+"_"+j).css('background-color','rgb(245,245,245)');
             }
         }
     });
@@ -232,7 +232,7 @@ $(document).ready(function(){
         for(var i=0; i<20; i++){
             for(var j=0; j<22; j++){
                 maps[i][j]=false;
-                $("#"+i+"_"+j).css('background-color','rgb(235,235,235)');
+                $("#"+i+"_"+j).css('background-color','rgb(245,245,245)');
             }
         }
         for(var i=0; i<22; i++){
@@ -281,7 +281,7 @@ $(document).ready(function(){
         else flank=5;
         locksection(flank);
     }
-    setUnion("nobice",1);
+    setUnion("master",2);
     $(".unionicon").click(function(){
         setUnion($(this).attr('name'),unionlevel);
     });
