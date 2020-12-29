@@ -58,6 +58,7 @@ $(document).ready(function(){
     initMap();
 
     const maps = Array.from(Array(20), () => Array(22).fill(false));
+    const result = Array.from(Array(20), () => Array(22).fill(null));
     const sectionArr = Array.from(Array(20), () => Array(22).fill(null));
     for(var i=0; i<5; i++){
         for(var j=i; j<10; j++){
@@ -146,8 +147,9 @@ $(document).ready(function(){
         var id = $(this).attr('id').split('_');
         var r = id[0];
         var c = id[1];
+        if(maps[r][c]==null) return;
         if(maps[r][c]==false) mouseStatus = 1;
-        else mouseStatus = 2;
+        else if(maps[r][c]==true) mouseStatus = 2;
         if(mouseStatus==1){
             maps[r][c]=true;
             $(this).css('background-color','rgb(150,150,150)');
@@ -166,6 +168,7 @@ $(document).ready(function(){
             var id = $(this).attr('id').split('_');
             var r = id[0];
             var c = id[1];
+            if(maps[r][c]==null) return;
             if(mouseStatus==1){
                 maps[r][c]=true;
                 $(this).css('background-color','rgb(150,150,150)');
@@ -184,6 +187,7 @@ $(document).ready(function(){
                 isClick = 0;
                 var r = id[0];
                 var c = id[1];
+                if(maps[r][c]==null) return;
                 var status = !maps[r][c];
                 var section = sectionArr[r][c];
                 for(var i=0; i<20; i++){
@@ -211,34 +215,77 @@ $(document).ready(function(){
         }
     });
 
-    $('.unionBlock').dblclick(function(e){
-        var id = $(this).attr('id').split('_');
-        var r = id[0];
-        var c = id[1];
-        var status = maps[r][c];
-        var section = sectionArr[r][c];
+    $('.resetbtn').click(function(){
         for(var i=0; i<20; i++){
             for(var j=0; j<22; j++){
-                if(section==sectionArr[i][j]){
-                    if(!status){
-                        maps[i][j]=true;
-                        $("#"+i+"_"+j).css('background-color','rgb(150,150,150)');
-                    }
-                    else{
-                        maps[i][j]=false;
-                        $("#"+i+"_"+j).css('background-color','rgb(235,235,235)');
-                    }
-                }
+                if(maps[i][j]==null) continue;
+                maps[i][j]=false;
+                $("#"+i+"_"+j).css('background-color','rgb(235,235,235)');
             }
-        }  
-        
+        }
     });
-    $('.resetbtn').click(function(){
+
+    var unionlank = "nobice";
+    var unionlevel = 1;
+
+    var locksection = function(lank){ // 0,1,2,3,4,5
         for(var i=0; i<20; i++){
             for(var j=0; j<22; j++){
                 maps[i][j]=false;
                 $("#"+i+"_"+j).css('background-color','rgb(235,235,235)');
             }
         }
+        for(var i=0; i<22; i++){
+            for(var j=4; j>=0; j--){
+                if(lank<=j){
+                    if(i<20){
+                        maps[i][0+(4-j)]=null;
+                        maps[i][21-(4-j)]=null;
+                        $("#"+i+"_"+(0+(4-j))).css('background-color','rgb(90,90,90)');
+                        $("#"+i+"_"+(21-(4-j))).css('background-color','rgb(90,90,90)');
+                    }
+                    maps[0+(4-j)][i]=null;
+                    maps[19-(4-j)][i]=null;
+                    $("#"+(0+(4-j))+"_"+i).css('background-color','rgb(90,90,90)');
+                    $("#"+(19-(4-j))+"_"+i).css('background-color','rgb(90,90,90)');
+                }
+            }
+        }
+    }
+    var setUnion = function(aflank,aflevel){
+        $("img[name="+unionlank+"]").css('opacity','0.6');
+        $("div[name=level"+unionlevel+"]").css('color','gray');
+        unionlank = aflank;
+        unionlevel = aflevel;
+        $("img[name="+unionlank+"]").css('opacity','1');
+        $("div[name=level"+unionlevel+"]").css('color','black');
+        var str;
+        var tlevel=0;
+        if(aflank=="nobice") str="노비스 유니온 ";
+        if(aflank=="veteran"){str="베테랑 유니온 ";tlevel=2500;}
+        if(aflank=="master"){str="마스터 유니온 ";tlevel=5000;}
+        if(aflank=="grand"){str="그랜드 유니온 ";tlevel=7500;}
+        if(aflevel==1) str+="I";
+        if(aflevel==2) str+="II";
+        if(aflevel==3) str+="III";
+        if(aflevel==4) str+="IV";
+        if(aflevel==5) str+="V";
+        tlevel += aflevel*500;
+        $('.lankname>p').text(str);
+        var flank = 0;
+        if(tlevel < 2000) flank=0;
+        else if(tlevel < 3000) flank=1;
+        else if(tlevel < 4000) flank=2;
+        else if(tlevel < 5000) flank=3;
+        else if(tlevel < 6000) flank=4;
+        else flank=5;
+        locksection(flank);
+    }
+    setUnion("nobice",1);
+    $(".unionicon").click(function(){
+        setUnion($(this).attr('name'),unionlevel);
+    });
+    $(".levelbtn").click(function(){
+        setUnion(unionlank,$(this).attr('name').substring(5));
     });
 });
