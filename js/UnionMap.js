@@ -1,3 +1,14 @@
+var MAXCHARACTER = 46;
+
+
+var unionlank = "nobice";
+var unionlevel = 1;
+var maxChar = 0;
+const maps = Array.from(Array(20), () => Array(22).fill(false));
+const result = Array.from(Array(20), () => Array(22).fill(null));
+const sectionArr = Array.from(Array(20), () => Array(22).fill(null));
+var hands = 1;
+
 $(document).ready(function(){
     var initMap = function(){
         var mapTable = $("#map");
@@ -57,9 +68,6 @@ $(document).ready(function(){
     }
     initMap();
 
-    const maps = Array.from(Array(20), () => Array(22).fill(false));
-    const result = Array.from(Array(20), () => Array(22).fill(null));
-    const sectionArr = Array.from(Array(20), () => Array(22).fill(null));
     for(var i=0; i<5; i++){
         for(var j=i; j<10; j++){
             sectionArr[j][i]="criticalDamage";
@@ -225,9 +233,6 @@ $(document).ready(function(){
         }
     });
 
-    var unionlank = "nobice";
-    var unionlevel = 1;
-
     var locksection = function(lank){ // 0,1,2,3,4,5
         for(var i=0; i<20; i++){
             for(var j=0; j<22; j++){
@@ -261,16 +266,17 @@ $(document).ready(function(){
         $("div[name=level"+unionlevel+"]").css('color','black');
         var str;
         var tlevel=0;
-        if(aflank=="nobice") str="노비스 유니온 ";
-        if(aflank=="veteran"){str="베테랑 유니온 ";tlevel=2500;}
-        if(aflank=="master"){str="마스터 유니온 ";tlevel=5000;}
-        if(aflank=="grand"){str="그랜드 유니온 ";tlevel=7500;}
+        if(aflank=="nobice") {str="노비스 유니온 ";maxChar=9;}
+        if(aflank=="veteran"){str="베테랑 유니온 ";tlevel=2500;maxChar=18;}
+        if(aflank=="master"){str="마스터 유니온 ";tlevel=5000;maxChar=27;}
+        if(aflank=="grand"){str="그랜드 유니온 ";tlevel=7500;maxChar=36;}
         if(aflevel==1) str+="I";
         if(aflevel==2) str+="II";
         if(aflevel==3) str+="III";
         if(aflevel==4) str+="IV";
         if(aflevel==5) str+="V";
         tlevel += aflevel*500;
+        maxChar += (aflevel-1);
         $('.lankname>p').text(str);
         var flank = 0;
         if(tlevel < 2000) flank=0;
@@ -289,15 +295,58 @@ $(document).ready(function(){
         setUnion(unionlank,$(this).attr('name').substring(5));
     });
 
+
+
+    var totalnumber = function(){
+        var allinput = $("input[name=charcount]");
+        var tnum = 0;
+        $.each(allinput,function(index,value){
+            tnum+=$(value).val()*1;
+        });
+        return tnum;
+    }
+
+    var totalnecessary = function(){
+        var allinput = $('input[name=necessary]');
+        var tnum = 0;
+        $.each(allinput,function(index,value){
+            tnum+=$(value).val()*1;
+        });
+        return tnum;
+    }
+
     $(".char>div>input").on("propertychange change keyup paste input",function(){
         var inputvalue = $(this).val();
         if(isNaN(inputvalue) || inputvalue<0){
             alert("0 이상의 숫자를 입력해주세요!");
             $(this).val('0');
         }
+        if(totalnumber()>MAXCHARACTER){
+            alert("최대 캐릭터 개수를 넘을 수 없습니다.");
+            $(this).val('0');
+        }
+        if($(this).attr('name')=='necessary'){
+            if($(this).val()*1 > $(this).parent().children('input[name=charcount]').val()*1){
+                alert("필수 유니온의 개수는 캐릭터 개수를 넘을 수 없습니다.");
+                $(this).val($(this).parent().children('input[name=charcount]').val());
+            }
+        }
+        if(totalnecessary() > maxChar+hands){
+            alert("필수 유니온의 개수는 현재 유니온에서 가능한 최대치를 넘을 수 없습니다.");
+            $(this).val('0');
+        }
+    });
+
+    $("input[name=hands]").on("propertychange change keyup paste input",function(){
+        if($(this).is(":checked")) hands=1;
+        else hands=0;
     });
 
     $(".cplusbtn").click(function(){
+        if(totalnumber()+1>MAXCHARACTER+hands){
+            alert("최대 캐릭터 개수를 넘을 수 없습니다.");
+            return;
+        }
         $(this).parent().children('input[name=charcount]').val($(this).parent().children('input[name=charcount]').val()*1+1);
     });
     $(".cminusbtn").click(function(){
