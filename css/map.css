@@ -1,0 +1,16 @@
+table{
+    border-spacing: 0;
+    position:relative;
+    left:50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+}
+.unionBlock{
+    padding:0;
+    width:19px;
+    height:19px;
+    background-color: rgb(235,235,235);
+}
+.unionBlock:hover{
+    background-color: rgb(190,190,190);
+}

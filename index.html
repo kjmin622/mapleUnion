@@ -2,12 +2,18 @@
 <html lang="ko">
 <head>
     <meta charset="utf-8">
+    <title>메이플 유니온 자동배치</title>
     <link rel="stylesheet" type="text/css" href="css/main.css"> 
+    <link rel="stylesheet" type="text/css" href="css/map.css"> 
 </head>
 <body>
     <div class="fullFrame">
         <div class="Frame topFrame">
-            <div class="unionMap"></div>
+            <div class="unionMap">
+                <table id="map">
+                </table>
+
+            </div>
             <div class="setting">
                 <div class="selectLank"></div>
                 <div class="priority"></div>
@@ -20,3 +26,6 @@
     </div>
 </body>
 </html>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script> 
+<script src="js/UnionMap.js"></script>
