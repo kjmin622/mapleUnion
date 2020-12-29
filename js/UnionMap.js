@@ -58,6 +58,89 @@ $(document).ready(function(){
     initMap();
 
     const maps = Array.from(Array(20), () => Array(22).fill(false));
+    const sectionArr = Array.from(Array(20), () => Array(22).fill(null));
+    for(var i=0; i<5; i++){
+        for(var j=i; j<10; j++){
+            sectionArr[j][i]="criticalDamage";
+        }
+    }
+    for(var i=0; i<5; i++){
+        for(var j=10; j<15+(5-i); j++){
+            sectionArr[j][i]="armerIgnore";
+        }
+    }
+    for(var i=0; i<5; i++){
+        for(var j=10; j>=1+i; j--){
+            sectionArr[i][j]="tolerance";
+        }
+    }
+    for(var i=0; i<5; i++){
+        for(var j=11; j<21-i; j++){
+            sectionArr[i][j]="exp";
+        }
+    }
+    for(var i=0; i<5; i++){
+        for(var j=4-i; j<10; j++){
+            sectionArr[j][17+i]="critical";
+        }
+    }
+    for(var i=0; i<5; i++){
+        for(var j=10; j<16+i; j++){
+            sectionArr[j][17+i]="bossDamage";
+        }
+    }
+    for(var i=0; i<5; i++){
+        for(var j=5-i; j<11; j++){
+            sectionArr[i+15][j]="buff";
+        }
+    }
+    for(var i=0; i<5; i++){
+        for(var j=11; j<17+i; j++){
+            sectionArr[i+15][j]="stance";
+        }
+    }
+    for(var i=5; i<10; i++){
+        for(var j=5; j<=i; j++){
+            sectionArr[i][j]="tmp1";
+        }
+    }
+    for(var i=5; i<10; i++){
+        for(var j=1+i; j<11; j++){
+            sectionArr[i][j]="tmp2";
+        }
+    }
+    for(var i=5; i<10; i++){
+        for(var j=11; j<16+(5-i); j++){
+            sectionArr[i][j]="tmp3";
+        }
+    }
+    for(var i=5; i<10; i++){
+        for(var j=16-(i-5); j<17; j++){
+            sectionArr[i][j]="tmp4";
+        }
+    }
+    for(var i=10; i<15; i++){
+        for(var j=5; j<=5+(14-i); j++){
+            sectionArr[i][j]="tmp5";
+        }
+    }
+    for(var i=10; i<15; i++){
+        for(var j=10-(i-10); j<11; j++){
+            sectionArr[i][j]="tmp6";
+        }
+    }
+    for(var i=10; i<15; i++){
+        for(var j=11; j<12+(i-10); j++){
+            sectionArr[i][j]="tmp7";
+        }
+    }
+    for(var i=10; i<15; i++){
+        for(var j=16-(14-i); j<17; j++){
+            sectionArr[i][j]="tmp8";
+        }
+    }
+
+
     var mouseStatus = 0; // 0:non 1:add 2:delete
     $('.unionBlock').mousedown(function(){
         var id = $(this).attr('id').split('_');
@@ -91,5 +174,26 @@ $(document).ready(function(){
                 $(this).css('background-color','rgb(235,235,235)');
             }
         }
-    })
+    });
+    $('.unionBlock').dblclick(function(){
+        var id = $(this).attr('id').split('_');
+        var r = id[0];
+        var c = id[1];
+        var status = maps[r][c];
+        var section = sectionArr[r][c];
+        for(var i=0; i<20; i++){
+            for(var j=0; j<22; j++){
+                if(section==sectionArr[i][j]){
+                    if(!status){
+                        maps[i][j]=true;
+                        $("#"+i+"_"+j).css('background-color','rgb(150,150,150)');
+                    }
+                    else{
+                        maps[i][j]=false;
+                        $("#"+i+"_"+j).css('background-color','rgb(235,235,235)');
+                    }
+                }
+            }
+        }
+    });
 });
